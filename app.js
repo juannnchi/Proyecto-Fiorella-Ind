@@ -54,6 +54,7 @@ verCarrito.addEventListener("click", () => {
         modalContainer.style.display = "none";
     })
     
+<<<<<<< Updated upstream
     modalBtn.className = "modal-header-btn";
     modalHeader.append(modalBtn);
 
@@ -76,4 +77,11 @@ verCarrito.addEventListener("click", () => {
     totalBuying.innerHTML = `Total a pagar: $${total}.`;
 
     modalContainer.append(totalBuying);
+=======
+    modalBtn.className = "modal-close";
+    
+    modalContainer.append(modalBtn);
+
+    let carritoContent = document.createElement("div");
+>>>>>>> Stashed changes
 });
