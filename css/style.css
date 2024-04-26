@@ -121,6 +121,10 @@ header{
     width: 80px;
 }
 
+.eliminar-product{
+    cursor: pointer;
+}
+
 .total-content{
     width: 100%;
     padding: 10px;

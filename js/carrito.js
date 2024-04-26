@@ -32,12 +32,22 @@ const pintarCarrito = () =>{
         <img src="${product.img}">
         <h3>${product.nombre}</h3>
         <span>$${product.precio}</span>
+        <p>cantidad: <button id="menos">-</button>${product.cantidad}<button id="mas">+</button></p>
+        <span>= $${product.cantidad * product.precio}</span>
         `;
         
         modalContainer.append(carritoContent);
+
+        const eliminar = document.createElement("Button");
+        eliminar.className = "eliminar-product";
+        eliminar.setAttribute("id","eliminar");
+        eliminar.innerHTML = `<i class="bi bi-x"></i>`;
+
+        carritoContent.append(eliminar);
+        eliminar.addEventListener("click", eliminarProducto); 
     });
     
-    const total = carrito.reduce((acc, el) => acc + el.precio, 0);
+    const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
     
     const totalBuying = document.createElement("div");
     totalBuying.className = "total-content"
@@ -48,7 +58,25 @@ const pintarCarrito = () =>{
     
     modalContainer.append(modalBtn);
     
-    let carritoContent = document.createElement("div");  
+    let carritoContent = document.createElement("div"); 
 };
 
 verCarrito.addEventListener("click", pintarCarrito);
+
+
+
+
+const eliminarProducto = () => {
+    const foundId = carrito.find((element) => element.id);
+
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== foundId;
+    });
+    
+    carritoCounter();
+    pintarCarrito();
+};
+
+const carritoCounter = () => {
+    cantidadCarrito.innerText = carrito.length;
+}
