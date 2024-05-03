@@ -26,6 +26,8 @@ const pintarCarrito = () =>{
     modalHeader.append(modalBtn);
     
     carrito.forEach((product) => {
+
+
         let carritoContent = document.createElement("div");
         carritoContent.className = "modal-content";
         carritoContent.innerHTML = ` 
@@ -49,9 +51,9 @@ const pintarCarrito = () =>{
         });
 
         sumarBtn.addEventListener("click", () => {
-            product.cantidad++;     
-            pintarCarrito();
-            saveLocal();
+                product.cantidad++;     
+                pintarCarrito();
+                saveLocal();
         });
 
         const eliminar = carritoContent.querySelector("#eliminar");

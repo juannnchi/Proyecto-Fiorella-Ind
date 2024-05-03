@@ -27,6 +27,22 @@ header{
     text-decoration: none;
     font-weight: bold;
     cursor: default;
+    position: relative;
+}
+
+.nav-item::after{
+    content: "";
+    position: absolute;
+    background-color: black;
+    width: 0%;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    transition: .4s;
+}
+
+.nav-item:hover::after{
+    width: 100%;
 }
 
 .logo {
@@ -35,6 +51,25 @@ header{
     text-decoration: none;
     color: black;
     cursor: default;
+}
+
+.carrito{
+    border: none;
+    background: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.carrito span{
+    background-color: red;
+    color: white;
+    padding: 4px;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 1rem;
+    font-weight: bold;
+    right: 20px;
+    top: 30px;
 }
 
 .shop-content{
