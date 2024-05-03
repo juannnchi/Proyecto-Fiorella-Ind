@@ -32,19 +32,33 @@ const pintarCarrito = () =>{
         <img src="${product.img}">
         <h3>${product.nombre}</h3>
         <span>$${product.precio}</span>
-        <p>cantidad: <button id="menos">-</button>${product.cantidad}<button id="mas">+</button></p>
+        <p>cantidad: <button id="restar">-</button>${product.cantidad}<button id="sumar">+</button></p>
         <span>= $${product.cantidad * product.precio}</span>
+        <button id="eliminar"><i class="bi bi-x"></i></button>
         `;
         
         modalContainer.append(carritoContent);
 
-        const eliminar = document.createElement("Button");
-        eliminar.className = "eliminar-product";
-        eliminar.setAttribute("id","eliminar");
-        eliminar.innerHTML = `<i class="bi bi-x"></i>`;
+        const restarBtn = carritoContent.querySelector("#restar");
+        const sumarBtn = carritoContent.querySelector("#sumar");
 
-        carritoContent.append(eliminar);
-        eliminar.addEventListener("click", eliminarProducto); 
+        restarBtn.addEventListener("click", () => {
+            product.cantidad !=1 ? product.cantidad-- : product.cantidad == 1;
+            pintarCarrito();  
+            saveLocal();
+        });
+
+        sumarBtn.addEventListener("click", () => {
+            product.cantidad++;     
+            pintarCarrito();
+            saveLocal();
+        });
+
+        const eliminar = carritoContent.querySelector("#eliminar");
+        eliminar.addEventListener("click", () => {
+            eliminarProducto(product.id);
+        })
+
     });
     
     const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
@@ -62,14 +76,14 @@ const pintarCarrito = () =>{
 
 verCarrito.addEventListener("click", pintarCarrito);
 
-const eliminarProducto = () => {
-    const foundId = carrito.find((element) => element.id);
+const eliminarProducto = (id) => {
+    const foundId = carrito.find((element) => element.id === id);
 
     carrito = carrito.filter((carritoId) => {
         return carritoId !== foundId;
     });
-    
     carritoCounter();
+    saveLocal();
     pintarCarrito();
 };
 

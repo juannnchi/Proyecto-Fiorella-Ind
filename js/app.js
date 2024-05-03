@@ -39,9 +39,9 @@ productos.forEach((product) => {
             precio: product.precio,
             cantidad: product.cantidad,
         });
+        carritoCounter();
+        saveLocal();
     }
-    carritoCounter();
-    saveLocal();
     });
 });
 
