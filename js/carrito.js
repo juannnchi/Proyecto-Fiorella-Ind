@@ -58,13 +58,9 @@ const pintarCarrito = () =>{
     
     modalContainer.append(modalBtn);
     
-    let carritoContent = document.createElement("div"); 
 };
 
 verCarrito.addEventListener("click", pintarCarrito);
-
-
-
 
 const eliminarProducto = () => {
     const foundId = carrito.find((element) => element.id);
@@ -78,5 +74,12 @@ const eliminarProducto = () => {
 };
 
 const carritoCounter = () => {
-    cantidadCarrito.innerText = carrito.length;
-}
+
+    const carritoLength = carrito.length;
+
+    localStorage.setItem("carritoLength", JSON.stringify(carritoLength));
+
+    cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"));
+};
+
+carritoCounter();
